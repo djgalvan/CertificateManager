@@ -22,12 +22,12 @@ namespace CertificateManager
                 Format = x509Certificate.GetFormat(),
                 HashCode = x509Certificate.GetHashCode(),
 
-                // TODO: Implement new Issuer property after creating GetIssuer method
+                // TODO: Implement new Issuer property after GetIssuer method is implemented
                 IssuerName = x509Certificate.GetIssuerName(),
                 KeyAlgorithm = x509Certificate.GetKeyAlgorithm(),
                 KeyAlgorithmParameters = x509Certificate.GetKeyAlgorithmParameters(),
 
-                // TODO: Implement new Subject property after creating GetIssuer method
+                // TODO: Implement new Subject property after GetSubject method is implemented
                 Principal = x509Certificate.GetName(),
                 PublicKey = x509Certificate.GetPublicKey(),
                 RawCertData = x509Certificate.GetRawCertData(),
