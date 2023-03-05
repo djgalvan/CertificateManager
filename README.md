@@ -39,6 +39,8 @@ The current state of Linux/Unix Desktop Environment certificates has fallen behi
 
 The `dotnet https` command is a CLI utility. Utilizing the PKI databases would fix most issues revolving around `dotnet https --trust` usage.
 
+[Theory](https://github.com/djgalvan/CertificateManager.git)
+
 <!--
 # Detailed design
 
