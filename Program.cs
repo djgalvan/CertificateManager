@@ -4,9 +4,10 @@ using Microsoft.EntityFrameworkCore.Sqlite;
 using CertificateManager;
 
 using var db = new CertificateContext();
+db.Database.EnsureCreated();
 db.Add(CertificateManager.CertificateManager.GetCertificate());
 db.SaveChanges();
-var certificates = db.Certificates
+var certificates = db.nssPublic
     .OrderBy(c => c.CertificateId)
     .First();
 

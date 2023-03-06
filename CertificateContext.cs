@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
 
 namespace CertificateManager
 {
@@ -13,9 +14,17 @@ namespace CertificateManager
             );
         }
 
-        public DbSet<Certificate> Certificates { get; set; }
+        public DbSet<Certificate> nssPublic { get; set; }
+
+        SqliteConnectionStringBuilder sqliteConnection = new SqliteConnectionStringBuilder
+        {
+            ConnectionString = "Data Source={Cert9Db}",
+            Mode = SqliteOpenMode.ReadWriteCreate,
+        };
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite($"Data Source={Cert9Db}");
+        {
+            options.UseSqlite(sqliteConnection.ToString());
+        }
     }
 }

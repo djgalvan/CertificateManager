@@ -38,7 +38,7 @@ namespace CertificateManager
 
         internal static void AddCertificate(CertificateContext context, Certificate certificate)
         {
-            context.Certificates.Add(certificate);
+            context.nssPublic.Add(certificate);
         }
 
         // TODO: Remove Certificate
