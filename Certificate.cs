@@ -1,4 +1,4 @@
-﻿namespace CertificateManager
+﻿namespace Certificates
 {
     internal class Certificate
     {
