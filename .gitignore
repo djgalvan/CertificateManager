@@ -5,7 +5,7 @@
 
 # certificate, database, & log files
 *.pem
-*.db
+*.db*
 *.log
 *.cert
 *.p12
