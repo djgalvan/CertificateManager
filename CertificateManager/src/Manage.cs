@@ -5,8 +5,7 @@ namespace CertificateManager
     internal abstract class Manage
     {
         private static readonly string TestCertificate = Path.Combine(
-            Environment.GetEnvironmentVariable("HOME"), "Projects",
-            "CertificateManager", "823F9A74E036BC06378EB64BB4C20E17D48D7A9E.pfx"
+            Environment.GetEnvironmentVariable("PKICertDir"), "certificate.p12"
         );
 
         private static readonly X509Certificate x509Certificate = X509Certificate.CreateFromCertFile(TestCertificate);

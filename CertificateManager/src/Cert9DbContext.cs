@@ -6,8 +6,7 @@ namespace CertificateManager
     internal class Cert9DbContext : DbContext
     {
         private static string Cert9Db = Path.Combine(
-            Environment.GetEnvironmentVariable("HOME"), "Projects",
-            "CertificateManager", "pki", "test", "cert9.db"
+            Environment.GetEnvironmentVariable("PKITestDir"), "cert9.db"
         );
 
         public DbSet<Certificate> nssPublic { get; set; }
