@@ -5,13 +5,13 @@ namespace CertificateManager
 {
     internal class Cert9DbContext : DbContext
     {
-        private static string Cert9Db = Path.Combine(
+        private static readonly string Cert9Db = Path.Combine(
             Environment.GetEnvironmentVariable("PKITestDir"), "cert9.db"
         );
 
-        public DbSet<Certificate> nssPublic { get; set; }
+        internal DbSet<Certificate> nssPublic { get; set; }
 
-        SqliteConnectionStringBuilder sqliteConnection = new()
+        private readonly SqliteConnectionStringBuilder sqliteConnection = new()
         {
             DataSource = Cert9Db,
             Mode = SqliteOpenMode.ReadWriteCreate,
