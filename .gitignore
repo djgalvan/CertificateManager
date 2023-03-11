@@ -7,6 +7,9 @@
 *.pem
 *.db
 *.log
+*.cert
+*.p12
+*.pfx
 
 # User-specific files
 *.rsuser
