@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography.X509Certificates;
 
-namespace CertificateManager.src
+namespace CertificateManager
 {
     internal abstract class Manage
     {

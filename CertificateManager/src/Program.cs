@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography.X509Certificates;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore.Sqlite;
-using CertificateManager.src;
+using CertificateManager;
 
 using var cert9DbContext = new Cert9DbContext();
 cert9DbContext.Database.EnsureCreated();

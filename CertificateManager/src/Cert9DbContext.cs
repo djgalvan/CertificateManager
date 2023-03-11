@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
-namespace CertificateManager.src
+namespace CertificateManager
 {
     internal class Cert9DbContext : DbContext
     {
