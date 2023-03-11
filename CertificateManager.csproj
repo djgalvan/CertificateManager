@@ -9,8 +9,11 @@
 
   <ItemGroup>
     <Compile Remove="pki\**" />
+    <Compile Remove="scripts\**" />
     <EmbeddedResource Remove="pki\**" />
+    <EmbeddedResource Remove="scripts\**" />
     <None Remove="pki\**" />
+    <None Remove="scripts\**" />
   </ItemGroup>
 
   <ItemGroup>
