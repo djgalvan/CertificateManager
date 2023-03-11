@@ -1,25 +1,22 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.5.33424.131
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CertificateManager", "CertificateManager.csproj", "{E21F825B-6D1D-4F2E-853D-A4D7B495262D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CertificateManager", "CertificateManager\CertificateManager.csproj", "{7A001AD3-470E-48A2-B385-8AFC10015D59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E21F825B-6D1D-4F2E-853D-A4D7B495262D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E21F825B-6D1D-4F2E-853D-A4D7B495262D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E21F825B-6D1D-4F2E-853D-A4D7B495262D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E21F825B-6D1D-4F2E-853D-A4D7B495262D}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {69F11B92-937D-471E-8157-907BBC93A16C}
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A001AD3-470E-48A2-B385-8AFC10015D59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A001AD3-470E-48A2-B385-8AFC10015D59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A001AD3-470E-48A2-B385-8AFC10015D59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A001AD3-470E-48A2-B385-8AFC10015D59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
