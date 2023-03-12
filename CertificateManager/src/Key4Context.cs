@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using CertificateManager.Models;
+﻿using CertificateManager.Models;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
 namespace CertficateManager;
@@ -20,9 +19,18 @@ public partial class Key4Context : DbContext
 
     public virtual DbSet<NssPrivate> NssPrivates { get; set; }
 
+    private static readonly string Key4Db = Path.Combine(
+        Environment.GetEnvironmentVariable("PKITestDir"), "key4.db"
+    );
+
+    private readonly SqliteConnectionStringBuilder sqliteConnection = new(){
+        DataSource = Key4Db,
+        Mode = SqliteOpenMode.ReadWriteCreate,
+    };
+
     // TODO: use connectionstring builder
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlite("Data Source=key4.db;Mode=ReadOnly");
+        => optionsBuilder.UseSqlite(sqliteConnection.ToString());
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using CertificateManager.Models;
+﻿using CertificateManager.Models;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
 namespace CertficateManager;
@@ -18,9 +17,17 @@ public partial class Cert9Context : DbContext
 
     public virtual DbSet<NssPublic> NssPublics { get; set; }
 
-    // TODO: Use connectionstring builder
+    private static readonly string Cert9Db = Path.Combine(
+        Environment.GetEnvironmentVariable("PKITestDir"), "cert9.db"
+    );
+
+    private readonly SqliteConnectionStringBuilder sqliteConnection = new(){
+        DataSource = Cert9Db,
+        Mode = SqliteOpenMode.ReadWriteCreate,
+    };
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlite("Data Source=cert9.db;Mode=ReadOnly");
+        => optionsBuilder.UseSqlite(sqliteConnection.ToString());
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
