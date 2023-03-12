@@ -6,9 +6,10 @@
 
 # Source: https://www.ibm.com/docs/en/api-connect/2018.x?topic=overview-generating-self-signed-certificate-using-openssl
 # Already have deps installed in wsl
-function New-SelfSignedCert {
-    openssl req -newkey rsa:2048 -nodes -keyout $PKICertDir/key.pem -x509 -days 365 -out $PKICertDir/certificate.pem
-    openssl req -newkey rsa:2048 -nodes -keyout $WindowsPKICertDir/key.pem -x509 -days 365 -out $WindowsPKICertDir/certificate.pem
+function New-SelfSignedCerts {
+    openssl req -x509 -newkey rsa:2048 -nodes -keyout $PKICertDir/key1.pem -x509 -days 365 -out $PKICertDir/certificate1.pem
+    openssl req -x509 -newkey rsa:2048 -nodes -keyout $PKICertDir/key2.pem -x509 -days 365 -out $PKICertDir/certificate2.pem
+    openssl req -x509 -newkey rsa:2048 -nodes -keyout $PKICertDir/key3.pem -x509 -days 365 -out $PKICertDir/certificate3.pem
     # Country
     # State
     # Locality
@@ -17,25 +18,18 @@ function New-SelfSignedCert {
     # FQDN or User
     # Email
 }
-function Review-SelfSignedCert {
-    openssl x509 -text -noout -in $PKICertDir/certificate.pem
-    openssl x509 -text -noout -in $WindowsPKICertDir/certificate.pem
-}
-function CreatePKS12-FromFiles {
-    openssl pkcs12 -inkey $PKICertDir/key.pem -in $PKICertDir/certificate.pem -export -out $PKICertDir/certificate.p12
-    openssl pkcs12 -inkey $WindowsPKICertDir/key.pem -in $WindowsPKICertDir/certificate.pem -export -out $WindowsPKICertDir/certificate.p12
-}
-function Validate-PKS12 {
-    openssl pkcs12 -in $PKICertDir/certificate.p12 -noout -info
-    openssl pkcs12 -in $WindowsPKICertDir/certificate.p12 -noout -info
+
+function CreatePKS12s-FromFiles {
+    openssl pkcs12 -inkey $PKICertDir/key1.pem -in $PKICertDir/certificate1.pem -export -out $PKICertDir/certificate1.p12
+    openssl pkcs12 -inkey $PKICertDir/key2.pem -in $PKICertDir/certificate2.pem -export -out $PKICertDir/certificate2.p12
+    openssl pkcs12 -inkey $PKICertDir/key3.pem -in $PKICertDir/certificate3.pem -export -out $PKICertDir/certificate3.p12
 }
 
 function Create-BarePKIDatabase {
     certutil -Nd sql:$PKIRefDir
-    certutil -Nd sql:$WindowsPKIRefDir
 }
 
-function Dump-PKIDatabases {
+function Dump-PKICertDatabases {
     cert9ReferenceTables=$(sqlite3 $PKIRefDir/cert9.db -cmd .tables .quit)
     cert9ReferenceDump=$(sqlite3 $PKIRefDir/cert9.db -cmd .dump .quit)
     cert9TestTables=$(sqlite3 $PKITestDir/cert9.db -cmd .tables .quit)
@@ -48,7 +42,10 @@ function Dump-PKIDatabases {
     echo "$cert9TestTables"
     echo "$cert9ReferenceDump"
     } > $PKILogDir/cert9-refdump.log
+}
 
+function Dump-PKIKeyDatabases {
+    cert9ReferenceTables=$(sqlite3 $PKIRefDir/cert9.db -cmd .tables .quit)
     key4ReferenceTables=$(sqlite3 $PKIRefDir/key4.db -cmd .tables .quit)
     key4ReferenceDump=$(sqlite3 $PKIRefDir/key4.db -cmd .dump .quit)
     key4TestTables=$(sqlite3 $PKITestDir/key4.db -cmd .tables .quit)
@@ -61,4 +58,8 @@ function Dump-PKIDatabases {
     echo "$key4TestTables"
     echo "$key4ReferenceDump"
     } > $PKILogDir/key4-refdump.log
+}
+
+function Review-Cert9db {
+    code --diff $PKILogDir/cert9-testdump.log $PKILogDir/cert9-refdump.log
 }
