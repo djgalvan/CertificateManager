@@ -19,14 +19,11 @@ The current state of Linux/Unix Desktop Environment certificates has fallen behi
 
 ## Out of scope
 
-1. WSL [future]
-1. Windows Firefox [future]
-1. MacOSx Firefox [future]
-1. Containerized Browsers (Snap, Flatpack) [future]
-1. Any browser/utility that supports PKI databases [future]
-1. Root databases. [future]
-1. Docker/Podman [possible future? already implemented?]
-1. Encrypting the database. [possible future?]
+1. Containerized Browsers (Snap, Flatpack) 
+1. Any browser/utility that supports PKI databases
+1. Root databases. 
+1. Docker/Podman
+1. Encrypting the database.
 1. Any other advanced situations beyond typical Desktop Browser Development.
 1. Automated testing with curl, documentation suggests that there is potential for future implementation.
 
