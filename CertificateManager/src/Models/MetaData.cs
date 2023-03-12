@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace CertificateManager.Models;
+﻿namespace CertificateManager.Models;
 
 public partial class MetaData
 {
