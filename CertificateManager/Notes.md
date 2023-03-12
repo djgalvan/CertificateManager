@@ -8,3 +8,4 @@
 		- [x] .dump
 - [ ] Automate diff of dumps
 	- [ ] bash
+- [ ] Fix Errors

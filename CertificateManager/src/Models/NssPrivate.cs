@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CertificateManager;
+namespace CertificateManager.Models;
 
 public partial class NssPrivate
 {
