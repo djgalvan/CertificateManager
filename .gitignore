@@ -10,6 +10,7 @@
 *.cert
 *.p12
 *.pfx
+*.key
 pkcs11.txt
 
 # User-specific files
