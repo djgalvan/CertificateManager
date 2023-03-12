@@ -18,6 +18,7 @@ public partial class Cert9Context : DbContext
 
     public virtual DbSet<NssPublic> NssPublics { get; set; }
 
+    // TODO: Use connectionstring builder
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlite("Data Source=cert9.db;Mode=ReadOnly");
 
