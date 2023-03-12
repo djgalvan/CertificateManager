@@ -21,6 +21,10 @@ function Validate-PKS12 {
     openssl pkcs12 -in $PKICertDir/certificate.p12 -noout -info
 }
 
+function Create-BarePKIDatabase {
+    certutil -Nd sql:$PKIRefDir
+}
+
 function Dump-PKIDatabases {
     cert9ReferenceTables=$(sqlite3 $PKIRefDir/cert9.db -cmd .tables .quit)
     cert9ReferenceDump=$(sqlite3 $PKIRefDir/cert9.db -cmd .dump .quit)
