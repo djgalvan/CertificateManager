@@ -1,7 +1,7 @@
 #!/bin/bash
 # Append to ~/.bashrc
-# if [ -f ~/Projects/CertificateManager/CertificateManager/scripts/linux/profile.sh ]; then
-# 	. ~/Projects/CertificateManager/CertificateManager/scripts/linux/profile.sh
+# if [ -f ~/Projects/CertificateManager/CertificateManager/profile.sh ]; then
+# 	. ~/Projects/CertificateManager/CertificateManager/profile.sh
 # fi
 
 export ProjectDir=$HOME/Projects/CertificateManager/CertificateManager
@@ -44,10 +44,6 @@ function Initialize-PKIRefDatabase {
     pk12util -i $PKIPKCSDir/pkcs12-1.p12 -d sql:$PKIRefDir -W '' -K ''
     pk12util -i $PKIPKCSDir/pkcs12-2.p12 -d sql:$PKIRefDir -W '' -K ''
     pk12util -i $PKIPKCSDir/pkcs12-3.p12 -d sql:$PKIRefDir -W '' -K ''
-}
-
-function Create-BarePKIDatabase {
-    certutil -Nd sql:$PKIRefDir
 }
 
 function Dump-PKICertDatabases {
