@@ -5,6 +5,7 @@
 # fi
 
 export ProjectDir=$HOME/Projects/CertificateManager/CertificateManager
+export PKIConfig=$ProjectDir/pkiconfig.ini
 export PKIDir=$ProjectDir/pki
 export PKIKeyDir=$PKIDir/keys
 export PKICertDir=$PKIDir/certs
@@ -17,26 +18,32 @@ function Scaffold-PKIDirectories {
     mkdir -p $PKIKeyDir $PKICertDir $PKILogDir $PKIPKCSDir $PKIRefDir $PKITestDir
 }
 
+function Clean-PKIDirectories {
+    rm -rf $PKIDir/*
+}
+
 # Source: https://www.ibm.com/docs/en/api-connect/2018.x?topic=overview-generating-self-signed-certificate-using-openssl
 function New-SelfSignedCerts {
     openssl req -x509 -newkey rsa -nodes \
-        -keyout $PKIKeyDir/key1.pem -days 365 \
-           -out $PKICertDir/cert1.pem -config $PKIDir/config.ini
+        -keyout $PKIKeyDir/key1.key -days 365 \
+           -out $PKICertDir/cert1.cert -config $PKIConfig
     openssl req -x509 -newkey rsa -nodes \
-        -keyout $PKIKeyDir/key2.pem -days 365 \
-           -out $PKICertDir/cert2.pem -config $PKIDir/config.ini
+        -keyout $PKIKeyDir/key2.key -days 365 \
+           -out $PKICertDir/cert2.cert -config $PKIConfig
     openssl req -x509 -newkey rsa -nodes \
-        -keyout $PKIKeyDir/key3.pem -days 365 \
-           -out $PKICertDir/cert3.pem -config $PKIDir/config.ini
+        -keyout $PKIKeyDir/key3.key -days 365 \
+           -out $PKICertDir/cert3.cert -config $PKIConfig
 }
 function CreatePKS12s-FromFiles {
-    openssl x509 -inkey $PKIKeyDir/key1.pem -in $PKICertDir/cert1.pem -export -out $PKIPKCSDir/cert1.pfx --password pass:
-    openssl x509 -inkey $PKIKeyDir/key2.pem -in $PKICertDir/cert2.pem -export -out $PKIPKCSDir/cert2.pfx --password pass:
-    openssl x509 -inkey $PKIKeyDir/key3.pem -in $PKICertDir/cert3.pem -export -out $PKIPKCSDir/cert3.pfx --password pass:
+    openssl pkcs12 -inkey $PKIKeyDir/key1.key -in $PKICertDir/cert1.cert -export -out $PKIPKCSDir/pkcs12-1.p12 --password pass:
+    openssl pkcs12 -inkey $PKIKeyDir/key2.key -in $PKICertDir/cert2.cert -export -out $PKIPKCSDir/pkcs12-2.p12 --password pass:
+    openssl pkcs12 -inkey $PKIKeyDir/key3.key -in $PKICertDir/cert3.cert -export -out $PKIPKCSDir/pkcs12-3.p12 --password pass:
 }
 
 function Initialize-PKIRefDatabase {
-    certutil -d sql:$PKIRefDir -A -n "$USER-DeveloperCert1" -t ",," -i $PKIPKCSDir/cert1.pfx --empty-password
+    pk12util -i $PKIPKCSDir/pkcs12-1.p12 -d sql:$PKIRefDir -W '' -K ''
+    pk12util -i $PKIPKCSDir/pkcs12-2.p12 -d sql:$PKIRefDir -W '' -K ''
+    pk12util -i $PKIPKCSDir/pkcs12-3.p12 -d sql:$PKIRefDir -W '' -K ''
 }
 
 function Create-BarePKIDatabase {
