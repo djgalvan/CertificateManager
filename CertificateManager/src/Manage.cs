@@ -10,9 +10,9 @@ namespace CertificateManager
 
         private static readonly X509Certificate x509Certificate = X509Certificate.CreateFromCertFile(TestCertificate);
 
-        internal static Certificate GetCertificate()
+        internal static cert9 GetCertificate()
         {
-            Certificate certificate = new Certificate
+            cert9 certificate = new cert9
             {
                 Hash = x509Certificate.GetCertHash(),
                 EffectiveDate = DateTime.Parse(x509Certificate.GetEffectiveDateString()),

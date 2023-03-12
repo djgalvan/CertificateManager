@@ -9,7 +9,7 @@ namespace CertificateManager
             Environment.GetEnvironmentVariable("PKITestDir"), "cert9.db"
         );
 
-        internal DbSet<Certificate> nssPublic { get; set; }
+        internal DbSet<cert9> nssPublic { get; set; }
 
         private readonly SqliteConnectionStringBuilder sqliteConnection = new()
         {
