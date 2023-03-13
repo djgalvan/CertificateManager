@@ -2,7 +2,7 @@
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
-namespace CertficateManager;
+namespace CertificateManager;
 
 public partial class Key4Context : DbContext
 {

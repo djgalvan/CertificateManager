@@ -2,7 +2,7 @@
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
-namespace CertficateManager;
+namespace CertificateManager;
 
 public partial class Cert9Context : DbContext
 {
@@ -21,13 +21,17 @@ public partial class Cert9Context : DbContext
         Environment.GetEnvironmentVariable("PKITestDir"), "cert9.db"
     );
 
-    private readonly SqliteConnectionStringBuilder sqliteConnection = new(){
+    private readonly SqliteConnectionStringBuilder sqliteConnection = new()
+    {
+        ConnectionString = "",
         DataSource = Cert9Db,
-        Mode = SqliteOpenMode.ReadWriteCreate,
+        Mode = SqliteOpenMode.ReadWriteCreate
     };
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlite(sqliteConnection.ToString());
+    {
+        optionsBuilder.UseSqlite(sqliteConnection.ToString());
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
