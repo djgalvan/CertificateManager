@@ -35,9 +35,9 @@ function New-SelfSignedCerts {
            -out $PKICertDir/cert3.cert -config $PKIConfig
 }
 function CreatePKS12s-FromFiles {
-    openssl pkcs12 -inkey $PKIKeyDir/key1.key -in $PKICertDir/cert1.cert -export -out $PKIPKCSDir/pkcs12-1.p12 --password pass:
-    openssl pkcs12 -inkey $PKIKeyDir/key2.key -in $PKICertDir/cert2.cert -export -out $PKIPKCSDir/pkcs12-2.p12 --password pass:
-    openssl pkcs12 -inkey $PKIKeyDir/key3.key -in $PKICertDir/cert3.cert -export -out $PKIPKCSDir/pkcs12-3.p12 --password pass:
+    openssl pkcs12 -inkey $PKIKeyDir/key1.key -in $PKICertDir/cert1.cert -export -out $PKIPKCSDir/pkcs12-1.p12 -password pass:
+    openssl pkcs12 -inkey $PKIKeyDir/key2.key -in $PKICertDir/cert2.cert -export -out $PKIPKCSDir/pkcs12-2.p12 -password pass:
+    openssl pkcs12 -inkey $PKIKeyDir/key3.key -in $PKICertDir/cert3.cert -export -out $PKIPKCSDir/pkcs12-3.p12 -password pass:
 }
 
 function Initialize-PKIRefDatabase {
