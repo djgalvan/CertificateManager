@@ -16,8 +16,6 @@ Databases pass initial validation.
 > Fail. Certificate is not modifiable.
 ```
 
-DotNet already provides the methods to generate the certificate.
-
 ## TODO
 
 >
