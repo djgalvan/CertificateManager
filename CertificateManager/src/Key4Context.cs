@@ -19,12 +19,8 @@ public partial class Key4Context : DbContext
 
     public virtual DbSet<NssPrivate> NssPrivates { get; set; }
 
-    private static readonly string Key4Db = Path.Combine(
-        Environment.GetEnvironmentVariable("PKITestDir"), "key4.db"
-    );
-
     private readonly SqliteConnectionStringBuilder sqliteConnection = new(){
-        DataSource = Key4Db,
+        DataSource = Config.PKI.Key4Db,
         Mode = SqliteOpenMode.ReadWriteCreate,
     };
 

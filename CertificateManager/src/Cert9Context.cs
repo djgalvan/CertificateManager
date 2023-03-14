@@ -1,7 +1,6 @@
 ﻿using CertificateManager.Models;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-
 namespace CertificateManager;
 
 public partial class Cert9Context : DbContext
@@ -17,14 +16,9 @@ public partial class Cert9Context : DbContext
 
     public virtual DbSet<NssPublic> NssPublics { get; set; }
 
-    private static readonly string Cert9Db = Path.Combine(
-        Environment.GetEnvironmentVariable("PKITestDir"), "cert9.db"
-    );
-
-    private readonly SqliteConnectionStringBuilder sqliteConnection = new()
+    internal readonly SqliteConnectionStringBuilder sqliteConnection = new()
     {
-        ConnectionString = "",
-        DataSource = Cert9Db,
+        DataSource = Config.PKI.Cert9Db,
         Mode = SqliteOpenMode.ReadWriteCreate
     };
 
