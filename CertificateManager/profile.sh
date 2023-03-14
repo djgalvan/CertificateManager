@@ -13,6 +13,7 @@ export PKIPKCSDir=$PKIDir/pkcs
 export PKIRefDir=$PKIDir/refdb
 export PKITestDir=$PKIDir/testdb
 export PKILogDir=$PKIDir/logs
+export PKIDirectory=$HOME/.pki/nssdb
 
 function Scaffold-PKIDirectories {
     mkdir -p $PKIKeyDir $PKICertDir $PKILogDir $PKIPKCSDir $PKIRefDir $PKITestDir
